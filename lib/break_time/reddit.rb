@@ -2,18 +2,29 @@ require 'open-uri'
 require 'json'
 require 'date'
 
-datetime =  Time.now.strftime("%F %r")
+module BreakTime
 
-reddit_web = open('http://reddit.com/.json')
-reddit_json = JSON.parse(reddit_web.read)
+  class RedditBreak
+    def initialize(count)
+      @count = count.to_i
+      reddit_web = open('http://reddit.com/.json')
+      @reddit_json = JSON.parse(reddit_web.read)
+      puts "Reddit JSON captured..."
+    end
 
-break_time_file = File.new('doc/breaktime.md', 'w+')
-break_time_file.write("# Reddit at #{datetime}\n")
+    def write_break
+      puts "Adding Reddit to break file..."
 
-reddit_json['data']['children'].each do |entry|
-  break_time_file.write("* [#{entry['data']['title']}](http://reddit.com#{entry['data']['permalink']})  \n")
+      datetime = Time.now.strftime("%F %r")
+      break_time_file = File.new('/tmp/breaktime.md', 'w+')
+      break_time_file.write("## Reddit at #{datetime}\n")
+
+      @reddit_json['data']['children'][0..@count].each do |entry|
+        break_time_file.write("1. [#{entry['data']['title']}](http://reddit.com#{entry['data']['permalink']}) _#{entry['data']['subreddit']}_  \n")
+      end
+
+      puts "Reddit break file ready..."
+    end
+  end
+
 end
-
-puts "Break file ready..."
-puts "Opening doc/breaktime.md"
-`open -a "/Applications/Marked 4.app" doc/breaktime.md`
