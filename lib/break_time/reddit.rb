@@ -20,7 +20,7 @@ module BreakTime
     def write_break_markdown
       puts "Adding Reddit to markdown break file..."
 
-      break_time_file = File.open("/tmp/#{@filename}.md", "a")
+      break_time_file = File.open("/tmp/#{@filename}.md", "w")
       break_time_file.write("## Reddit at #{@datetime}\n")
 
       @reddit_json['data']['children'][0..@count].each do |entry|
@@ -33,8 +33,7 @@ module BreakTime
     def write_break_html
       puts "Adding Reddit to html break file..."
 
-      break_time_file = File.open("/tmp/#{@filename}.html", "a")
-      puts break_time_file
+      break_time_file = File.open("/tmp/#{@filename}.html", "w")
       break_time_file.write("<h2>Reddit at #{@datetime}</h2>")
 
       @reddit_json['data']['children'][0..@count].each do |entry|

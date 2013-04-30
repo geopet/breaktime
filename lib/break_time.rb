@@ -5,16 +5,12 @@ module BreakTime
 
   @filename = 'breaktime'
 
-  def self.reddit
-    reddit_break = BreakTime::RedditBreak.new(10, @filename)
-    reddit_break.parse
-    reddit_break.write_break_markdown
-    reddit_break.write_break_html
-  end
+  reddit_break = BreakTime::RedditBreak.new(10, @filename)
+  reddit_break.parse
+  reddit_break.write_break_markdown
+  reddit_break.write_break_html
 
-  def self.show_markdown
-    puts "Opening doc/breaktime.md..."
-    `open -a "/Applications/Marked 4.app" /tmp/breaktime.md`
-  end
+  puts "Opening doc/breaktime.md..."
+  `open -a "/Applications/Marked 4.app" /tmp/breaktime.md`
 
 end
