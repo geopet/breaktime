@@ -3,9 +3,13 @@ require "break_time/reddit"
 
 module BreakTime
 
+  @filename = 'breaktime'
+
   def self.reddit
-    reddit_break = BreakTime::RedditBreak.new(5)
-    reddit_break.write_break
+    reddit_break = BreakTime::RedditBreak.new(10, @filename)
+    reddit_break.parse
+    reddit_break.write_break_markdown
+    reddit_break.write_break_html
   end
 
   def self.show_markdown
