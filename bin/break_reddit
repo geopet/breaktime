@@ -1,0 +1,4 @@
+require 'break_time'
+
+puts BreakTime.break(ARGV[0], ARGV[1])
+puts BreakTime.file_open(ARGV[2])

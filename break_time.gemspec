@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = BreakTime::VERSION
   spec.authors       = ["Geoff Petrie"]
   spec.email         = ["g.petrie@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{A little gem to provide a quick break.}
+  spec.summary       = %q{A little gem to provide a quick break in markdown or html.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
