@@ -1,4 +1,10 @@
+#!/usr/bin/env ruby
+
 require 'break_time'
 
-puts BreakTime.break(ARGV[0], ARGV[1])
-puts BreakTime.file_open(ARGV[2])
+if ARGV[0].nil?
+  puts "[count] [file name] [extension]\n"
+else
+  puts BreakTime.break(ARGV[0], ARGV[1])
+  puts BreakTime.file_open(ARGV[2])
+end
